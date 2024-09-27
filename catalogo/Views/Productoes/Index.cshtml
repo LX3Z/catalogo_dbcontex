@@ -1,0 +1,92 @@
+﻿@model IEnumerable<catalogo.Models.Producto>
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Color de fondo claro */
+            font-family: 'Arial', sans-serif; /* Fuente Arial */
+            color: #333; /* Color del texto */
+        }
+
+        h1 {
+            text-align: center; /* Centrar título */
+            font-style: italic; /* Estilo de fuente cursiva */
+            margin-top: 20px;
+        }
+
+        .btn {
+            margin: 5px; /* Espaciado entre botones */
+        }
+
+        .table {
+            margin: 20px auto; /* Espaciado de la tabla */
+            width: 80%; /* Ancho de la tabla */
+        }
+
+        .table th, .table td {
+            text-align: center; /* Centrar contenido de la tabla */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>@ViewData["Title"]</h1>
+
+        <div class="text-center">
+            <a href="@Url.Action("Create")" class="btn btn-success">Crear Producto</a>
+        </div>
+
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Detalles</th> <!-- Nuevo campo de detalles -->
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var producto in Model)
+                    {
+                        <tr>
+                            <td>@producto.ProductoId</td>
+                            <td>@producto.Nombre</td>
+                            <td>$@producto.Precio</td>
+                            <td>
+                                <a href="@Url.Action("Details", new { id = producto.ProductoId })" class="btn btn-info">Detalles</a>
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", new { id = producto.ProductoId })" class="btn btn-warning">Editar</a>
+                                <a href="@Url.Action("Delete", new { id = producto.ProductoId })" class="btn btn-danger">Borrar</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5">No hay productos disponibles.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

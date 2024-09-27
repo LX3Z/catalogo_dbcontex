@@ -1,0 +1,82 @@
+﻿@model IEnumerable<catalogo.Models.Producto>
+
+@{
+    ViewData["Title"] = "Tienda Manuel";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Color de fondo claro */
+            font-family: 'Arial', sans-serif; /* Fuente Arial */
+            color: #333; /* Color del texto */
+        }
+
+        h1, h2 {
+            text-align: center; /* Centrar títulos */
+            font-style: italic; /* Estilo de fuente cursiva */
+        }
+
+        .card {
+            margin: 20px; /* Espaciado entre tarjetas */
+            border: none; /* Sin borde en las tarjetas */
+        }
+
+        .card-img-top {
+            height: 200px; /* Altura fija para las imágenes */
+            object-fit: cover; /* Ajustar imagen a la tarjeta */
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Color del botón */
+            color: white; /* Color del texto del botón */
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Color del botón al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center">
+            <h1 class="display-4">Bienvenido a Tienda Manuel</h1>
+            <p>Explora nuestros productos a continuación:</p>
+        </div>
+
+        <h2>Catálogo de Productos</h2>
+        <div class="row">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var producto in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="@producto.ImagenRuta" class="card-img-top" alt="@producto.Nombre">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">@producto.Nombre</h5>
+                                <p class="card-text">$@producto.Precio</p>
+                                <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No hay productos disponibles.</p>
+            }
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

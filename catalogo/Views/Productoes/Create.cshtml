@@ -1,0 +1,58 @@
+﻿@model catalogo.Models.Producto
+
+@{
+    ViewData["Title"] = "Crear Producto";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Color de fondo claro */
+            font-family: 'Arial', sans-serif; /* Fuente Arial */
+            color: #333; /* Color del texto */
+        }
+
+        h1 {
+            text-align: center; /* Centrar título */
+            font-style: italic; /* Estilo de fuente cursiva */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>@ViewData["Title"]</h1>
+
+        <form asp-action="Create" method="post">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" name="Nombre" required />
+            </div>
+            <div class="form-group">
+                <label>Precio</label>
+                <input type="number" class="form-control" name="Precio" required />
+            </div>
+            <div class="form-group">
+                <label>Detalles</label>
+                <textarea class="form-control" name="Detalles"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Imagen URL</label>
+                <input type="text" class="form-control" name="ImagenRuta" />
+            </div>
+            <button type="submit" class="btn btn-primary">Crear</button>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
